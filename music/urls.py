@@ -7,5 +7,10 @@ urlpatterns = [
     path('', views.index, name='index'),
 
     # /music/712/
-    path('<int:album_id>', views.detail, name='detail'),
+    path('<int:album_id>/', views.detail, name='detail'),
+
+   # path('<int:album_id>', views.detail),
+
+
+
 ]
