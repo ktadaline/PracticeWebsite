@@ -3,8 +3,26 @@
 <h1>{{ album.album_title }}</h1>
 <h2>{{ album.artist }}</h2>
 
-<ul>
+{% if error_message %}
+    <p><strong> {{ error_message }} </strong></p>
+{% endif %}
+
+<form action = "{% url 'music:favorite' album.id %}" method = "post">
+    {% csrf_token %}
+    {% for song in album.song_set.all %}
+        <input type="radio" id="song{{ forloop.counter }}" name="song" value="{{ song.id }}">
+        <label for="song{{ forloop.counter }}">
+            {{ song.song_title }}
+            {% if song.is_favorite %}
+                 <img width ="20" height = "20" src="https://cdn.bulbagarden.net/upload/e/eb/Warp_Star.png">
+            {% endif %}
+        </label><br>
+    {% endfor %}
+    <input type="submit" value="favorite">
+</form>
+
+<!--<ul>
     {% for song in album.song_set.all %}
     <li>{{ song.song_title }} - {{ song.file_type }}</li>
     {% endfor %}
-</ul>
+</ul> -->

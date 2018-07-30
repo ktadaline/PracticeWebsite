@@ -14,7 +14,8 @@ urlpatterns = [
    # path('<int:album_id>', views.detail),
 
     # /music/<album_id>/favorite/
-   # FIX path('<int:album_id>/favorite/', views.favorite, name='favorite'),
+   #path('<int:album_id>/favorite/', name='favorite'),
+    url(r'^(?P<album_id>[0-9]+)/favorite/$', views.favorite, name='favorite'),
 
 
 ]
